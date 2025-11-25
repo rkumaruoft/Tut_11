@@ -1,8 +1,11 @@
 import express from "express";
-import {loginController, profileController, registerController} from "./controllers/user.js";
+import { loginController, profileController, registerController } from "./controllers/user.js";
 import { authToken } from "./middleware/auth.js";
 
 const router = express.Router();
+
+app.options('*', cors());
+
 router.post('/login', loginController);
 router.get('/user/me', authToken, profileController);
 router.post('/register', registerController);
