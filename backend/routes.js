@@ -3,6 +3,8 @@ import { loginController, profileController, registerController } from "./contro
 import { authToken } from "./middleware/auth.js";
 
 const router = express.Router();
+var cors = require('cors')
+
 
 app.options('*', cors());
 
