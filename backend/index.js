@@ -6,13 +6,16 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-
-// Must match your deployed frontend EXACTLY (no trailing slash)
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 console.log("CORS allowed origin:", FRONTEND_URL);
 
-// Strong CORS config (required for Railway + React Router)
+app.use((req, res, next) => {
+  console.log("DEBUG:", req.method, req.url);
+  next();
+});
+
+
 app.use(cors({
     origin: FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
